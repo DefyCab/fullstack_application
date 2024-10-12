@@ -4,9 +4,9 @@ const server = http.createServer((req, res) => {
   if (req.url) {
     const formUrl = req.url;
     // possible split using regex for letters
-    const name = formUrl.split("=")[1];
-    res.write(name);
-    res.end();
+    const name: string = formUrl.split("=")[1];
+    const namejs :any = JSON.stringify({ name: name}) 
+    res.end(namejs);
   }
 });
 
