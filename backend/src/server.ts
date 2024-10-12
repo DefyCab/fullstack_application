@@ -1,11 +1,5 @@
 import http from "http";
-import fs from "fs";
-
-// todo: read in file with words and make anagram that is a real word if exist in wordlist
-function convertToAnagram(name: string) {
-  const anagram = name.split("").sort(() => 0.5 - Math.random());
-// join to string
-}
+import { convertToAnagram } from "./functions";
 
 const server = http.createServer((req, res) => {
   if (req.url) {
@@ -13,10 +7,19 @@ const server = http.createServer((req, res) => {
     // possible split using regex for letters
     // todo: regex to ensure name is just letters
     const name: string = formUrl.split("=")[1];
-    const anagram = convertToAnagram(name);
-    const anagramJson: any = JSON.stringify({ name: anagram });
-    res.writeHead(200, { "Content-type": "application/json" });
-    res.end(anagramJson);
+    if (name) {
+      const anagramArr = convertToAnagram(name);
+      const anagram = anagramArr.join("");
+      const anagramJson: any = JSON.stringify({
+        name: name,
+        anagram: anagram,
+      });
+
+      res.writeHead(200, { "Content-type": "application/json" });
+      res.end(anagramJson);
+    }
+    // error handling
+    throw new Error("No input made. Supply first name!");
   }
 });
 
