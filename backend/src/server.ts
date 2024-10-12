@@ -1,7 +1,13 @@
 import http from "http";
 
 const server = http.createServer((req, res) => {
-  const formUrl = req.url;
+  if (req.url) {
+    const formUrl = req.url;
+    // possible split using regex for letters
+    const name = formUrl.split("=")[1];
+    res.write(name);
+    res.end();
+  }
 });
 
 const hostname = "localhost";
