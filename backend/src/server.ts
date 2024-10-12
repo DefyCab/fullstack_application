@@ -7,19 +7,21 @@ const server = http.createServer((req, res) => {
     // possible split using regex for letters
     // todo: regex to ensure name is just letters
     const name: string = formUrl.split("=")[1];
-    if (name) {
-      const anagramArr = convertToAnagram(name);
-      const anagram = anagramArr.join("");
-      const anagramJson: any = JSON.stringify({
-        name: name,
-        anagram: anagram,
-      });
+    try {
+      if (name) {
+        const anagramArr = convertToAnagram(name);
+        const anagram = anagramArr.join("");
+        const anagramJson: any = JSON.stringify({
+          name: name,
+          anagram: anagram,
+        });
 
-      res.writeHead(200, { "Content-type": "application/json" });
-      res.end(anagramJson);
+        res.writeHead(200, { "Content-type": "application/json" });
+        res.end(anagramJson);
+      }
+    } catch (error) {
+      console.log(error);
     }
-    // error handling
-    throw new Error("No input made. Supply first name!");
   }
 });
 
