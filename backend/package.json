@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "",
+    "test": "tsx --test",
     "build": "tsc",
     "server": "node dist/server.js"
   },
