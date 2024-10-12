@@ -13,7 +13,7 @@ const server = http.createServer((req, res) => {
     // todo: regex to ensure name is just letters
     const name: string = formUrl.split("=")[1];
     const nameJson: any = JSON.stringify({ name: name });
-    res.end(nameJson);
+    res.writeHead(200, { "Content-type": "application/json" });
   }
 });
 
