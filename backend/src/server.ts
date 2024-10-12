@@ -1,9 +1,10 @@
 import http from "http";
+import fs from "fs";
 
 // todo: read in file with words and make anagram that is a real word if exist in wordlist
 function convertToAnagram(name: string) {
   const anagram = name.split("").sort(() => 0.5 - Math.random());
-  return anagram;
+// join to string
 }
 
 const server = http.createServer((req, res) => {
@@ -12,8 +13,10 @@ const server = http.createServer((req, res) => {
     // possible split using regex for letters
     // todo: regex to ensure name is just letters
     const name: string = formUrl.split("=")[1];
-    const nameJson: any = JSON.stringify({ name: name });
+    const anagram = convertToAnagram(name);
+    const anagramJson: any = JSON.stringify({ name: anagram });
     res.writeHead(200, { "Content-type": "application/json" });
+    res.end(anagramJson);
   }
 });
 
