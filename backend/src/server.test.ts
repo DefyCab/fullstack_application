@@ -1,20 +1,18 @@
 import { describe, it } from "node:test";
-import { deepEqual} from "node:assert";
+import { deepEqual } from "node:assert";
 import { convertToAnagram } from "./functions";
 
 it("convertToAnagram function returns a string", () => {
   const anagram = convertToAnagram("Love");
-  const fail = convertToAnagram("test")
   const result = (anagram: string) => {
-   anagram.split("").forEach(letter => {
-    !anagram.includes(letter)
-    return
-   })
-   return anagram
+    anagram.split("").forEach((letter) => {
+      !anagram.includes(letter);
+      return;
+    });
+    return anagram;
   };
 
-  const match = result(fail)
-  console.log(match)
+  const match = result(anagram);
 
   deepEqual(anagram, match);
 });
