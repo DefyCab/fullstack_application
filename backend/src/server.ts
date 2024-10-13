@@ -1,6 +1,6 @@
 import http from "http";
 import { convertToAnagram } from "./functions";
-import fs from "fs";
+import fs, { writeFile } from "fs";
 
 const server = http.createServer((req, res) => {
   if (req.url) {
@@ -11,16 +11,13 @@ const server = http.createServer((req, res) => {
     try {
       if (name) {
         const anagramArr = convertToAnagram(name);
-        const anagram = anagramArr.join("");
+        const anagram = anagramArr.join("").toLowerCase();
+        
         const anagramJson: any = JSON.stringify({
           name: name,
           anagram: anagram,
         });
-        fs.readFile("./names.json", function getJson(err, angramList) {
-          const json = JSON.parse(angramList.toString());
-          const newAnagrams = json.anagrams.push(anagramJson)
-          console.log(newAnagrams)
-        });
+
         fs.writeFile(
           "./names.json",
           JSON.stringify(
@@ -33,7 +30,7 @@ const server = http.createServer((req, res) => {
           ),
           (error) => {
             if (error) {
-              console.log("An error has occurred ", error);
+              console.log(error.message);
               return;
             }
             res.writeHead(200, { "Content-type": "application/json" });

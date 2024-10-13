@@ -1,9 +1,10 @@
 import { describe, it } from "node:test";
-import { deepEqual } from "node:assert";
+import { deepEqual, equal, ok } from "node:assert";
+import { convertToAnagram } from "./functions";
 
 describe("Functions", () => {
   it("convertToAnagram function returns a string", () => {
-    deepEqual(1, 1);
+    const anagram = convertToAnagram("Love")
   });
   it("convertToAnagram returns a scrambled name", () => {});
 });
