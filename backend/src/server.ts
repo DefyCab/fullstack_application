@@ -1,6 +1,7 @@
 import http from "http";
 import { convertToAnagram } from "./functions";
 import fs, { writeFile } from "fs";
+const shortid = require("shortid");
 
 const server = http.createServer((req, res) => {
   if (req.url) {
@@ -20,6 +21,7 @@ const server = http.createServer((req, res) => {
           "./names.json",
           JSON.stringify(
             {
+              id: shortid.generate(),
               name: name,
               anagram: anagram,
             },
