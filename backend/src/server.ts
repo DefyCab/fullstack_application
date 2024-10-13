@@ -6,8 +6,6 @@ const shortid = require("shortid");
 const server = http.createServer((req, res) => {
   if (req.url) {
     const formUrl = req.url;
-    // todo: regex to ensure name is just letters
-    // todo: remove + sign to allow for full name
     const name: string = formUrl.split("=")[1];
     try {
       if (name) {
@@ -39,7 +37,7 @@ const server = http.createServer((req, res) => {
         );
       }
     } catch (error) {
-      console.log(error);
+      console.log({ message: error });
     }
   }
 });
