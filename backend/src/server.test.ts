@@ -1,14 +1,30 @@
 import { describe, it } from "node:test";
-import { match } from "node:assert";
+import { deepEqual} from "node:assert";
 import { convertToAnagram } from "./functions";
 
-describe("Functions", () => {
-  it("convertToAnagram function returns a string", () => {
-    const anagram = convertToAnagram("Love")
-    match(anagram,/evol/ )
-  });
-  it("convertToAnagram returns a scrambled name", () => {});
+it("convertToAnagram function returns a string", () => {
+  const anagram = convertToAnagram("Love");
+  const result = (anagram: string) => {
+    if (!anagram.includes("l")) {
+      return;
+    }
+    if (!anagram.includes("v")) {
+      return;
+    }
+    if (!anagram.includes("e")) {
+      return;
+    }
+    if (!anagram.includes("o")) {
+      return;
+    }
+    return anagram
+  };
+
+  const match = result(anagram)
+
+  deepEqual(anagram, match);
 });
+it("convertToAnagram returns a scrambled name", () => {});
 
 describe("Server actions", () => {
   it("the server should responds with statuscode 200", () => {});
