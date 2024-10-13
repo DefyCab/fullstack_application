@@ -1,5 +1,6 @@
 import http from "http";
 import { convertToAnagram } from "./functions";
+import fs from "fs";
 
 const server = http.createServer((req, res) => {
   if (req.url) {
@@ -15,9 +16,25 @@ const server = http.createServer((req, res) => {
           name: name,
           anagram: anagram,
         });
-
-        res.writeHead(200, { "Content-type": "application/json" });
-        res.end(anagramJson);
+        fs.writeFile(
+          "./names.json",
+          JSON.stringify(
+            {
+              name: name,
+              anagram: anagram,
+            },
+            null,
+            2
+          ),
+          (error) => {
+            if (error) {
+              console.log("An error has occurred ", error);
+              return;
+            }
+            res.writeHead(200, { "Content-type": "application/json" });
+            res.end(anagramJson);
+          }
+        );
       }
     } catch (error) {
       console.log(error);
