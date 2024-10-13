@@ -10,9 +10,7 @@ const server = http.createServer((req, res) => {
     const name: string = formUrl.split("=")[1];
     try {
       if (name) {
-        const anagramArr = convertToAnagram(name);
-        const anagram = anagramArr.join("").toLowerCase();
-        
+        const anagram = convertToAnagram(name);
         const anagramJson: any = JSON.stringify({
           name: name,
           anagram: anagram,

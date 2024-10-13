@@ -1,10 +1,11 @@
 import { describe, it } from "node:test";
-import { deepEqual, equal, ok } from "node:assert";
+import { match } from "node:assert";
 import { convertToAnagram } from "./functions";
 
 describe("Functions", () => {
   it("convertToAnagram function returns a string", () => {
     const anagram = convertToAnagram("Love")
+    match(anagram,/evol/ )
   });
   it("convertToAnagram returns a scrambled name", () => {});
 });
