@@ -16,6 +16,11 @@ const server = http.createServer((req, res) => {
           name: name,
           anagram: anagram,
         });
+        fs.readFile("./names.json", function getJson(err, angramList) {
+          const json = JSON.parse(angramList.toString());
+          const newAnagrams = json.anagrams.push(anagramJson)
+          console.log(newAnagrams)
+        });
         fs.writeFile(
           "./names.json",
           JSON.stringify(
