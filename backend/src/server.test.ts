@@ -4,23 +4,17 @@ import { convertToAnagram } from "./functions";
 
 it("convertToAnagram function returns a string", () => {
   const anagram = convertToAnagram("Love");
+  const fail = convertToAnagram("test")
   const result = (anagram: string) => {
-    if (!anagram.includes("l")) {
-      return;
-    }
-    if (!anagram.includes("v")) {
-      return;
-    }
-    if (!anagram.includes("e")) {
-      return;
-    }
-    if (!anagram.includes("o")) {
-      return;
-    }
-    return anagram
+   anagram.split("").forEach(letter => {
+    !anagram.includes(letter)
+    return
+   })
+   return anagram
   };
 
-  const match = result(anagram)
+  const match = result(fail)
+  console.log(match)
 
   deepEqual(anagram, match);
 });
