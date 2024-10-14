@@ -8,8 +8,10 @@ const Anagram = mongoose.model("Anagram", anagramSchema);
 router.get("/", async (req, res) => {
   try {
     const data = await Anagram.find();
-    res.send(data);
+    res.status(200).send(data);
   } catch (error: any) {
     res.json({ message: error.message });
   }
 });
+
+export default router
