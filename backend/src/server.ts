@@ -35,6 +35,8 @@ const server = http.createServer((req, res) => {
             res.end(anagramJson);
           }
         );
+      } else {
+        res.end("Enter a name please");
       }
     } catch (error) {
       console.log({ message: error });
