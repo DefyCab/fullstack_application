@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 export default function GetAnagram() {
-    const [anagram, setAnagrams] = useState([])
+    const [anagram, setAnagrams]: any = useState([])
 
     useEffect(() => {
         fetch("http://localhost:3000/anagrams")
@@ -13,8 +13,12 @@ export default function GetAnagram() {
 
     return (
         <div>
-            <h1>Your name:</h1>
-            <h1>Your Anagrams:</h1>
+            {anagram.map((ana: any) => (
+                <div key={ana._id}>
+                    <h1>Your name: {ana.name}</h1>
+                    <h1>Your anagrams: {ana.anagram}</h1>
+                </div>
+            ))}
         </div>
     )
 }
